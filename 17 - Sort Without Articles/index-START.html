@@ -47,7 +47,31 @@
   <ul id="bands"></ul>
 
 <script>
-const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+  const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+
+  function removeFirstArticle(bandName){
+    const articles = ["the", "a", "an"]
+
+    return articles.includes( bandName.split(" ")[0].toLocaleLowerCase()) ? bandName.split(" ").slice(1).join(" ") : bandName;
+  }
+
+  
+  bands.sort( (a,b) => {
+    aNoArticle = removeFirstArticle(a)
+    bNoArticle = removeFirstArticle(b)
+
+    return aNoArticle.localeCompare(bNoArticle)
+  })
+
+    console.table(bands)
+
+    const ul = document.querySelector('ul');
+
+    bands.forEach( band => {
+      ul.innerHTML += `
+        <li>${band}</li>
+      `
+    })
 
 
 </script>
