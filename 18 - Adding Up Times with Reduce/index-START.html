@@ -183,6 +183,28 @@
     </li>
   </ul>
 <script>
+
+  const li = Array.from(document.querySelectorAll('li '));
+
+  li.forEach( item => console.log(item.dataset.time));
+
+  const totalTimeS = 
+    li.reduce( (sum, item) => {
+      const duration = item.dataset.time.split(':').map(parseFloat)
+      const seconds = duration[0]*60 + duration[1];
+      return sum+seconds;      
+    },0 )
+
+  const totalHours = totalTimeS/3600;
+  const remainderMinutes = totalTimeS%3600/60
+  const remainderSeconds = remainderMinutes%60
+
+  console.log(
+    totalTimeS, Math.floor(totalHours),
+    Math.floor(remainderMinutes), Math.round(remainderSeconds))
+
+  
+
 </script>
 </body>
 </html>
